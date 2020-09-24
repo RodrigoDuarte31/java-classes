@@ -12,6 +12,8 @@ import javax.swing.JMenuItem;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -28,13 +30,18 @@ import javax.swing.ButtonGroup;
 
 import java.awt.FlowLayout;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JCheckBox;
+import javax.swing.border.BevelBorder;
 
 public class JanelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	private static JanelaPrincipal frame; 
 	private JPanel painelPrincipal;
 	private JPanel painelLogin;
 	private JPanel painelCadastro;
@@ -60,7 +67,7 @@ public class JanelaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JanelaPrincipal frame = new JanelaPrincipal();
+					frame = new JanelaPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -173,14 +180,13 @@ public class JanelaPrincipal extends JFrame {
 		painelCadastro = new JPanel();
 		painelCadastro.setBackground(SystemColor.control);
 		painelPrincipal.add(painelCadastro, "telaCadastro");
-		painelCadastro.setLayout(new MigLayout("", "[][][][]", "[grow][][grow][grow][grow][grow]"));
+		painelCadastro.setLayout(new MigLayout("", "[][][][]", "[][][grow][grow][grow][grow]"));
 		
 		// Label para a foto de perfil
 		lblImgPerfil = new JLabel("Escolha a foto de perfil");
 		lblImgPerfil.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImgPerfil.setBounds(0, 0, 50, 100);
 		painelCadastro.add(lblImgPerfil, "cell 0 0,alignx center");
-		
+
 		JLabel lblTituloCadastro = new JLabel("Cadastro de Clientes");
 		lblTituloCadastro.setFont(new Font("Tahoma", Font.BOLD, 20));
 		painelCadastro.add(lblTituloCadastro, "cell 3 0");
