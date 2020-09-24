@@ -406,7 +406,7 @@ public class JanelaPrincipal extends JFrame {
 	
 	public void mensagemAutenticacao(boolean msg) {
 		if(msg) {
-			JOptionPane.showMessageDialog(this, "Usuário autenticado", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Usuário autenticado", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(this, "Usuário não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
@@ -418,7 +418,7 @@ public class JanelaPrincipal extends JFrame {
 	
 	public void mensagemCadastro(boolean msg) {
 		if(msg) {
-			JOptionPane.showMessageDialog(this, "Usuário cadastrado", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Usuário cadastrado", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			JOptionPane.showMessageDialog(this, "Erro no cadastro", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
