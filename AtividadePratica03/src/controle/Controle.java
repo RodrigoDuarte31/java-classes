@@ -27,7 +27,7 @@ public class Controle implements ActionListener, MouseListener {
 	private Cliente cliente;
 	private Usuario usuario;
 	private ClienteDAO clienteDao;
-	private File imgFile;
+	private File imgFile = null;
 	
 	public Controle(JanelaPrincipal j) {
 		// TODO Auto-generated constructor stub
@@ -37,6 +37,7 @@ public class Controle implements ActionListener, MouseListener {
 		this.janela.getButtonLimparLogin().addActionListener(this);
 		this.janela.getButtonGravar().addActionListener(this);
 		this.janela.getButtonLimparCadastro().addActionListener(this);
+		this.janela.getMenuItemSair().addActionListener(this);
 		
 		this.janela.getLblImgPerfil().addMouseListener(this);
 		
@@ -60,14 +61,8 @@ public class Controle implements ActionListener, MouseListener {
 								
 				try {
 					BufferedImage foto = ImageIO.read(imgFile);
-					// foto.getScaledInstance(this.janela.getLblImgPerfil().getWidth(), this.janela.getLblImgPerfil().getHeight(), BufferedImage.TYPE_INT_RGB);
-					// ImageIcon iconeFoto = new ImageIcon(foto);
+			
 					this.janela.getLblImgPerfil().setIcon(new ImageIcon(foto.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
-					//this.janela.getLblImgPerfil().revalidate();
-					//this.janela.getLblImgPerfil().repaint();
-					
-					//Dimension tamanhoFoto = new Dimension(this.janela.getLblImgPerfil().getWidth(), this.janela.getLblImgPerfil().getHeight());
-					//this.janela.getLblImgPerfil().setPreferredSize(tamanhoFoto);
 					
 					this.janela.getLblImgPerfil().setText("");
 				} catch (IOException e1) {
@@ -94,10 +89,12 @@ public class Controle implements ActionListener, MouseListener {
 				boolean resultado = clienteDao.autenticarUsuario(usuarioLogin);
 				
 				if(resultado) {
-					System.out.println("Tudo certo");
 					this.janela.getMenuItemCadastrar().setEnabled(true);
+					this.janela.mensagemAutenticacao(true);
+					limparCampos();
 				} else {
-					System.out.println("Deu ruim");
+					this.janela.mensagemAutenticacao(false);
+					limparCampos();
 				}
 			}
 			
@@ -107,12 +104,16 @@ public class Controle implements ActionListener, MouseListener {
 			
 			Cliente clienteCadastro = obterCamposCadastro();
 			if(clienteCadastro == null) {
-				System.out.println("Deu ruim");
+				this.janela.mensagemErroFormCadastro();
 			} else {
 				boolean resultado = clienteDao.cadastrarCliente(clienteCadastro);
 				
 				if(resultado) {
-					System.out.println("Tudo certo");
+					this.janela.mensagemCadastro(true);
+					limparCampos();
+					this.janela.getLblImgPerfil().setText("Escolha a foto de perfil");
+				} else {
+					this.janela.mensagemCadastro(false);
 				}
 			}
 			
@@ -122,6 +123,10 @@ public class Controle implements ActionListener, MouseListener {
 			
 			limparCampos();
 			
+		}
+		
+		if(e.getActionCommand().equals("Sair")) {
+			System.exit(0);
 		}
 		
 	}
@@ -148,7 +153,11 @@ public class Controle implements ActionListener, MouseListener {
 		
 		FileInputStream fotoPerfil = null;
 		try {
-			fotoPerfil = new FileInputStream(imgFile); // imgFile obtido no FileChooser
+			if(imgFile == null) {
+				return null;
+			} else {
+				fotoPerfil = new FileInputStream(imgFile); // imgFile obtido no FileChooser
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,11 +9,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -25,18 +25,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 
 import java.awt.FlowLayout;
-import java.awt.Component;
-import java.awt.Dimension;
 
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JCheckBox;
-import javax.swing.border.BevelBorder;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -61,6 +55,7 @@ public class JanelaPrincipal extends JFrame {
 	private JComboBox<String> comboBoxProfissao;
 	private JMenuItem menuItemCadastrar;
 	private JMenuItem menuItemAutenticar;
+	private JMenuItem menuItemSair;
 
 	/**
 	 * Launch the application.
@@ -84,7 +79,8 @@ public class JanelaPrincipal extends JFrame {
 	public JanelaPrincipal() {
 		setTitle("Janela Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 350);
+		setResizable(false);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -115,13 +111,7 @@ public class JanelaPrincipal extends JFrame {
 		menu.add(menuItemCadastrar);
 		menuItemCadastrar.setEnabled(false); // Desabilita o botao do painel cadastro
 		
-		JMenuItem menuItemSair = new JMenuItem("Sair");
-		menuItemSair.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				System.exit(0);
-			}
-		});
+		menuItemSair = new JMenuItem("Sair");
 		menu.add(menuItemSair);
 		
 		contentPane = new JPanel();
@@ -403,7 +393,33 @@ public class JanelaPrincipal extends JFrame {
 	public void setMenuItemAutenticar(JMenuItem menuItemAutenticar) {
 		this.menuItemAutenticar = menuItemAutenticar;
 	}
+
+	public JMenuItem getMenuItemSair() {
+		return menuItemSair;
+	}
+
+	public void setMenuItemSair(JMenuItem menuItemSair) {
+		this.menuItemSair = menuItemSair;
+	}
 	
-	//pedrada viaja reggaero
+	public void mensagemAutenticacao(boolean msg) {
+		if(msg) {
+			JOptionPane.showMessageDialog(this, "Usuário autenticado", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(this, "Usuário não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void mensagemErroFormCadastro() {
+		JOptionPane.showMessageDialog(this, "Preencha todos os campos, por favor", "Erro", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void mensagemCadastro(boolean msg) {
+		if(msg) {
+			JOptionPane.showMessageDialog(this, "Usuário cadastrado", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(this, "Erro no cadastro", "Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
 }
