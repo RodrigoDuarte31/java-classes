@@ -1,7 +1,5 @@
 package modelo;
 
-import javax.swing.JOptionPane;
-
 public class Usuario {
 	
 	private String nome;

@@ -1,6 +1,5 @@
 package modelo;
 
-import java.awt.Image;
 import java.io.FileInputStream;
 
 public class Cliente {

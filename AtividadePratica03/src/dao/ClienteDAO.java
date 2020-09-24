@@ -16,7 +16,7 @@ public class ClienteDAO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	// Consulta cliente
+	// Autentica usuario
 	public boolean autenticarUsuario(Usuario u) {
 		String nome = null;
 		

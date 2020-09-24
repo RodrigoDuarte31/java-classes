@@ -402,6 +402,8 @@ public class JanelaPrincipal extends JFrame {
 		this.menuItemSair = menuItemSair;
 	}
 	
+	// Caixas de dialogo
+	
 	public void mensagemAutenticacao(boolean msg) {
 		if(msg) {
 			JOptionPane.showMessageDialog(this, "Usuário autenticado", "Sucesso", JOptionPane.PLAIN_MESSAGE);
