@@ -398,6 +398,6 @@ public class JanelaPrincipal extends JFrame {
 		this.menuItemAutenticar = menuItemAutenticar;
 	}
 	
-	//pedrada
+	//pedrada viaja reggaero
 
 }
