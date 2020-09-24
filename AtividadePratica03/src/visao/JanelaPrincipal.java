@@ -116,6 +116,12 @@ public class JanelaPrincipal extends JFrame {
 		menuItemCadastrar.setEnabled(false); // Desabilita o botao do painel cadastro
 		
 		JMenuItem menuItemSair = new JMenuItem("Sair");
+		menuItemSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
 		menu.add(menuItemSair);
 		
 		contentPane = new JPanel();
