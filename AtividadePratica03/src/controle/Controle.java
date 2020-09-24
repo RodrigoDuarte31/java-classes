@@ -18,12 +18,14 @@ import javax.swing.JFileChooser;
 
 import dao.ClienteDAO;
 import modelo.Cliente;
+import modelo.Usuario;
 import visao.JanelaPrincipal;
 
 public class Controle implements ActionListener, MouseListener {
 
 	private JanelaPrincipal janela;
 	private Cliente cliente;
+	private Usuario usuario;
 	private ClienteDAO clienteDao;
 	private File imgFile;
 	
@@ -85,11 +87,18 @@ public class Controle implements ActionListener, MouseListener {
 		
 		if(e.getActionCommand().equals("Autenticar")) {
 			
-			Cliente clienteLogin = obterCamposLogin();
-			if(clienteLogin == null) {
+			Usuario usuarioLogin = obterCamposLogin();
+			if(usuarioLogin == null) {
 				
 			} else {
-				clienteDao.autenticarCliente(clienteLogin);
+				boolean resultado = clienteDao.autenticarUsuario(usuarioLogin);
+				
+				if(resultado) {
+					System.out.println("Tudo certo");
+					this.janela.getMenuItemCadastrar().setEnabled(true);
+				} else {
+					System.out.println("Deu ruim");
+				}
 			}
 			
 		}
@@ -117,16 +126,16 @@ public class Controle implements ActionListener, MouseListener {
 		
 	}
 	
-	public Cliente obterCamposLogin() {
-		String usuario = this.janela.getFieldUsuario().getText();
-		// String senha = this.janela.getFieldSenha().getText();
+	public Usuario obterCamposLogin() {
+		String nomeUsuario = this.janela.getFieldUsuario().getText();
+		String senha = this.janela.getFieldSenha().getText();
 		
-		if(usuario == null) {
+		if(nomeUsuario == null || senha == null) {
 			return null;
 		} else {
-			cliente = new Cliente(usuario, null, null, null, null, null);
+			usuario = new Usuario(nomeUsuario, senha);
 			
-			return cliente;
+			return usuario;
 		}
 	}
 	

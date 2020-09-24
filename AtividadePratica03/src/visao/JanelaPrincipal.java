@@ -59,6 +59,8 @@ public class JanelaPrincipal extends JFrame {
 	private JButton buttonLimparCadastro;
 	private ButtonGroup buttonGroup;
 	private JComboBox<String> comboBoxProfissao;
+	private JMenuItem menuItemCadastrar;
+	private JMenuItem menuItemAutenticar;
 
 	/**
 	 * Launch the application.
@@ -90,7 +92,7 @@ public class JanelaPrincipal extends JFrame {
 		JMenu menu = new JMenu("Menu");
 		menuBar.add(menu);
 		
-		JMenuItem menuItemAutenticar = new JMenuItem("Autenticar");
+		menuItemAutenticar = new JMenuItem("Autenticar");
 		menuItemAutenticar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -101,7 +103,7 @@ public class JanelaPrincipal extends JFrame {
 		});
 		menu.add(menuItemAutenticar);
 		
-		JMenuItem menuItemCadastrar = new JMenuItem("Cadastrar");
+		menuItemCadastrar = new JMenuItem("Cadastrar");
 		menuItemCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -111,6 +113,7 @@ public class JanelaPrincipal extends JFrame {
 			}
 		});
 		menu.add(menuItemCadastrar);
+		menuItemCadastrar.setEnabled(false); // Desabilita o botao do painel cadastro
 		
 		JMenuItem menuItemSair = new JMenuItem("Sair");
 		menu.add(menuItemSair);
@@ -377,6 +380,22 @@ public class JanelaPrincipal extends JFrame {
 
 	public void setComboBoxProfissao(JComboBox<String> comboBoxProfissao) {
 		this.comboBoxProfissao = comboBoxProfissao;
+	}
+
+	public JMenuItem getMenuItemCadastrar() {
+		return menuItemCadastrar;
+	}
+
+	public void setMenuItemCadastrar(JMenuItem menuItemCadastrar) {
+		this.menuItemCadastrar = menuItemCadastrar;
+	}
+
+	public JMenuItem getMenuItemAutenticar() {
+		return menuItemAutenticar;
+	}
+
+	public void setMenuItemAutenticar(JMenuItem menuItemAutenticar) {
+		this.menuItemAutenticar = menuItemAutenticar;
 	}
 
 }
