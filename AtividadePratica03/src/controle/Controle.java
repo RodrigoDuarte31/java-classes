@@ -43,6 +43,7 @@ public class Controle implements ActionListener, MouseListener {
 		clienteDao = new ClienteDAO();
 	}
 	
+	// Evento para abrir JFileChooser e obter arquivo da imagem
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
