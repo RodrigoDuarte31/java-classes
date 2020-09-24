@@ -397,5 +397,7 @@ public class JanelaPrincipal extends JFrame {
 	public void setMenuItemAutenticar(JMenuItem menuItemAutenticar) {
 		this.menuItemAutenticar = menuItemAutenticar;
 	}
+	
+	//pedrada viaja reggaeiro
 
 }
